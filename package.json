@@ -4,7 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "node --watch src/server.js"
+    "dev": "node --watch src/server.js",
+    "start": "http-server ./frontend"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +20,8 @@
     "qrcode": "^1.5.4",
     "qrcode-terminal": "^0.12.0",
     "whatsapp-web.js": "^1.26.0"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
   }
 }
