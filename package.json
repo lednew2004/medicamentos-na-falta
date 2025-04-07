@@ -1,0 +1,23 @@
+{
+  "name": "produtos",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "baileys": "^6.7.16",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "fastify": "^5.2.2",
+    "fastify-cors": "^3.0.0",
+    "qrcode": "^1.5.4",
+    "qrcode-terminal": "^0.12.0",
+    "whatsapp-web.js": "^1.26.0"
+  }
+}

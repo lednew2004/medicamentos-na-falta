@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Medicamentos em Falta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2 class="title">Controle de Medicamentos em Falta</h2>
+    <div class="container">
+
+        <!-- Campo de código do colaborador -->
+        <input type="text" id="codigo" maxlength="4" placeholder="Código" oninput="mostrarNome()" onkeydown="moverFoco(event, 'medicamento')">
+
+        <!-- Campo para exibir o nome do colaborador (somente leitura) -->
+        <input type="text" id="nomeColaborador" readonly placeholder="Colaborador" />
+
+        <!-- Campos de informações do medicamento -->
+        <input type="text" id="medicamento" placeholder="Medicamento" onkeydown="moverFoco(event, 'miligrama')">
+
+        <input type="number" id="miligrama" placeholder="Miligrama" onkeydown="moverFoco(event, 'quantidade')">
+        
+        <input type="number" id="quantidade" placeholder="Quantidade/ML" onkeydown="moverFoco(event, 'laboratorio')">
+        
+        <input type="text" id="laboratorio" placeholder="Laboratório" onkeydown="moverFoco(event, 'submitButton')">
+
+    </div>
+    <!-- Botão para adicionar o medicamento -->
+    <button class="submitButton" id="submitButton" onclick="adicionarMedicamento()">Adicionar a Falta</button>
+    <button class="submitButton" id="buttonsubmit" onclick="buscarMedicamento()">Buscar</button>
+
+    <!-- Tabela para listar os medicamentos -->
+    <h3>Medicamentos em Falta</h3>
+    <table id="medicamentosTabela">
+        <thead>
+            <tr>
+                <th>Colaborador</th>
+                <th>Medicamento</th>
+                <th>Miligrama/ML</th>
+                <th>Quantidade</th>
+                <th>Laboratório</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- As informações dos medicamentos serão inseridas aqui -->
+        </tbody>
+    </table>
+
+    <script src="script.js"></script>
+</body>
+</html>

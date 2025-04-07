@@ -1,0 +1,91 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column; 
+    gap: 1em;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+}
+
+.title{
+    margin: 2em;
+    padding: 1em;
+    box-shadow: 3px 5px 7px #000;
+    width: 700px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+/* Container com display flex */
+.container {
+    padding: 2em;
+    display: flex;                  /* Torna o container um flex container */
+    justify-content: space-between; /* Adiciona espaçamento entre os campos */
+    gap: 20px;                      /* Espaçamento entre os inputs */
+}
+
+/* Estilo dos inputs */
+input {
+    width: 150px;           /* Largura fixa para os inputs */
+    padding: 10px;          /* Preenchimento interno */
+    font-size: 14px;        /* Tamanho da fonte */
+    height: 40px;           /* Altura do input */
+    border: 1px solid #ccc;/* Borda */
+    box-sizing: border-box; /* Inclui padding e border no cálculo da largura */
+}
+
+input:hover{
+    border: 2px solid #008000;/* Borda */
+    transition: all 0.1s ease-in-out;
+    
+}
+
+.submitButton{
+    padding: 7px;
+    background-color: #008000;
+    color: #f0f8ff;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 400px;
+    height: 100px;
+    border-color: #f0f8ff;
+}
+
+.submitButton:focus{
+    border-color: #000;
+    outline: none;
+}
+
+.submitButton:active{
+    border-color: #000;
+    border-width: 4px;
+}
+
+.submitButton:hover{
+    background-color: #adff2f;
+    transition: all 0.01s ease-in-out;
+}
+
+
+table {
+    width: 100%;
+   padding: 3em;
+    margin-bottom: 3em
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #000;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+}
