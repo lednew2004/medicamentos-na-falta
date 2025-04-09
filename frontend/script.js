@@ -102,7 +102,7 @@ async function  buscarMedicamento(){
             queryMedicine+= palavra.replace(/\+/g, '').trim("")
         })
 
-        const response = await fetch(`http://localhost:8080/failure?search=${queryMedicine}`);
+        const response = await fetch(`https://medicamentos-na-falta.onrender.com/failure?search=${queryMedicine}`);
         const data = await response.json()
 
         Object.entries(data).forEach(([subTable, rows]) => {
@@ -116,7 +116,7 @@ async function  buscarMedicamento(){
         const tabela = document.getElementById("medicamentosTabela").getElementsByTagName('tbody')[0];
         tabela.innerHTML = " "
 
-        const response = await fetch(`http://localhost:8080/failure?collaborator=${colaborador}`);
+        const response = await fetch(`https://medicamentos-na-falta.onrender.com/failure?collaborator=${colaborador}`);
         const data = await response.json()
        Object.entries(data).forEach(([subTable, rows]) => {
         rows.forEach(dados => {
@@ -150,7 +150,7 @@ async function removerMedicamento() {
         queryMedicine+= palavra.replace(/\+/g, '').trim("")
     })
 
-    const response = await fetch(`http://localhost:8080/failure?search=${queryMedicine}`);
+    const response = await fetch(`https://medicamentos-na-falta.onrender.com/failure?search=${queryMedicine}`);
     const data = await response.json()
 
     Object.entries(data).forEach(([subTable, rows]) => {
@@ -163,7 +163,7 @@ async function removerMedicamento() {
 
 async function remove(medicine){
     if(medicine){
-        await fetch(`http://localhost:8080/failure?search=${medicine}`, {
+        await fetch(`https://medicamentos-na-falta.onrender.com/failure?search=${medicine}`, {
             method: "DELETE"
         })
 
@@ -190,7 +190,7 @@ async function atualizarTabela(dados){
     }
 
 
-    const response = await fetch("http://localhost:8080/failure");
+    const response = await fetch("https://medicamentos-na-falta.onrender.com/failure");
     const data = await response.json();
 
     Object.entries(data).forEach(([subTable, rows]) => {
