@@ -1,34 +1,26 @@
 {
-  "failures": [
-    {
-      "collaborator": "Leonardo",
-      "medicine": "MALEATO DE DEXCLORFENIRAMINA + BETAMETASONA",
-      "queryMedicine": "MALEATODEDEXCLORFENIRAMINABETAMETASONA",
-      "miligrama": "0.5",
-      "quantity": "120",
-      "lab": "GERMED",
-      "date": "06 de abril de 2025 às 14:44:24",
-      "failure": true
-    },
-    {
-      "collaborator": "Wendel",
-      "medicine": "CLORIDRATO DE CIPROFLOXACINO",
-      "queryMedicine": "CLORIDRATODECIPROFLOXACINO",
-      "miligrama": "500",
-      "quantity": "14",
-      "lab": "PRATI",
-      "date": "06 de abril de 2025 às 15:13:41",
-      "failure": true
-    },
-    {
-      "collaborator": "Wendel",
-      "medicine": "DIPIRONA MONOIDRATADA",
-      "queryMedicine": "DIPIRONAMONOIDRATADA",
-      "miligrama": "1000",
-      "quantity": "20",
-      "lab": "NEO QUIMICA",
-      "date": "06 de abril de 2025 às 15:16:17",
-      "failure": true
-    }
-  ]
+  "failures": {
+    "08 de abril de 2025": [
+      {
+        "collaborator": "Wendel",
+        "medicine": "FLANCOX",
+        "queryMedicine": "FLANCOX",
+        "miligrama": "400",
+        "quantity": "20",
+        "lab": "APSEN",
+        "date": "08 de abril de 2025 às 23:25:26",
+        "failure": true
+      },
+      {
+        "collaborator": "Wendel",
+        "medicine": "LOSARTANA",
+        "queryMedicine": "LOSARTANA",
+        "miligrama": "25",
+        "quantity": "20",
+        "lab": "NEO QUIMICA",
+        "date": "08 de abril de 2025 às 23:26:00",
+        "failure": true
+      }
+    ]
+  }
 }

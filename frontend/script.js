@@ -1,8 +1,11 @@
 const usuarios = {
     "1": "Charles",
     "5": "Leonardo",
+    "13": "erik",
+    "14": "Yago",
     "17": "Ricardo",
     "13": "Erik",
+    "20": "Richardson",
     "25": "Wendel"
 };
 
@@ -12,15 +15,15 @@ function mostrarNome() {
     const nomeColaboradorInput = document.getElementById("nomeColaborador");
     const codigo = codigoInput.value;
 
-    // Verifica se o código é válido e exibe o nome correspondente
+   
     if (usuarios[codigo]) {
-        nomeColaboradorInput.value = usuarios[codigo]; // Atualiza o campo de nome
+        nomeColaboradorInput.value = usuarios[codigo]; 
     } else {
-        nomeColaboradorInput.value = ''; // Limpa o campo de nome caso o código seja inválido
+        nomeColaboradorInput.value = '';
     }
 }
 
-// Função para mover o foco para o próximo campo quando pressionar Enter
+
 function moverFoco(event, nextElementId) {
     if (event.key === "Enter") {
         event.preventDefault(); // Impede o comportamento padrão (enviar formulário)
@@ -53,13 +56,13 @@ async function adicionarMedicamento() {
     const quantity = quantidadeOrMlInput.value;
     const lab = laboratorioInput.value.toUpperCase();
 
-    // Valida se todos os campos estão preenchidos
+    
     if (!nomeColaborador || !medicine || !miligrama || !quantity || !lab) {
         alert("Por favor, preencha todos os campos.");
         return;
     }
 
-    await fetch("https://medicamentos-na-falta-api.onrender.com/failure", {
+    await fetch("http://localhost:8080/failure", {
         method: "POST", 
         headers: {
             "Content-Type": "application/json",
@@ -74,10 +77,10 @@ async function adicionarMedicamento() {
         })
     });
 
-    // Atualiza a tabela
+    
     await atualizarTabela();
 
-    // Limpa os campos após adicionar
+    
     medicamentoInput.value = '';
     miligramaInput.value = '';
     laboratorioInput.value = '';
@@ -99,43 +102,76 @@ async function  buscarMedicamento(){
             queryMedicine+= palavra.replace(/\+/g, '').trim("")
         })
 
-        const response = await fetch(`https://medicamentos-na-falta-api.onrender.com/failure?search=${queryMedicine}`);
+        const response = await fetch(`http://localhost:8080/failure?search=${queryMedicine}`);
         const data = await response.json()
-    
-       data.forEach(dados => {
-         atualizarTabela(dados)
-       })
+
+        Object.entries(data).forEach(([subTable, rows]) => {
+            rows.forEach(dados => {
+                atualizarTabela(dados)
+                
+            })
+        })
+       
     }else if(codigoInput.value){
         const tabela = document.getElementById("medicamentosTabela").getElementsByTagName('tbody')[0];
         tabela.innerHTML = " "
 
-        const response = await fetch(`https://medicamentos-na-falta-api.onrender.com/failure?collaborator=${colaborador}`);
+        const response = await fetch(`http://localhost:8080/failure?collaborator=${colaborador}`);
         const data = await response.json()
-        return data.forEach(dados => {
-
-            console.log(dados)
-
+       Object.entries(data).forEach(([subTable, rows]) => {
+        rows.forEach(dados => {
             
-        const row = tabela.insertRow();
-    
-        row.insertCell(0).textContent = dados.collaborator;
-        row.insertCell(1).textContent = dados.medicine;
-        row.insertCell(2).textContent = dados.miligrama;
-        row.insertCell(3).textContent = dados.quantity;
-        row.insertCell(4).textContent = dados.lab;
-        row.insertCell(5).textContent = dados.date;
+            const row = tabela.insertRow();
+        
+            row.insertCell(0).textContent = dados.collaborator;
+            row.insertCell(1).textContent = dados.medicine;
+            row.insertCell(2).textContent = dados.miligrama;
+            row.insertCell(3).textContent = dados.quantity;
+            row.insertCell(4).textContent = dados.lab;
+            row.insertCell(5).textContent = dados.date;
+        })
+       })
         
         return
-        })
-
     }else{
         atualizarTabela()
 
     }
     
 }
+
+async function removerMedicamento() {
+    let queryMedicine = "";
+    const medicamentoInput = document.getElementById("medicamento");
+
+    const medicine = String(medicamentoInput.value.toUpperCase());
+    const ArrayOfMedicine = medicine.split(" ")
+    ArrayOfMedicine.forEach(palavra => {
+        queryMedicine+= palavra.replace(/\+/g, '').trim("")
+    })
+
+    const response = await fetch(`http://localhost:8080/failure?search=${queryMedicine}`);
+    const data = await response.json()
+
+    Object.entries(data).forEach(([subTable, rows]) => {
+        rows.forEach(dados => {
+            remove(dados.queryMedicine)
+        })
+    })
+    
+}
+
+async function remove(medicine){
+    if(medicine){
+        await fetch(`http://localhost:8080/failure?search=${medicine}`, {
+            method: "DELETE"
+        })
+
+        atualizarTabela()
+    }
+}
+
 async function atualizarTabela(dados){
-    console.log(dados)
     const tabela = document.getElementById("medicamentosTabela").getElementsByTagName('tbody')[0];
 
     tabela.innerHTML = " "
@@ -154,12 +190,12 @@ async function atualizarTabela(dados){
     }
 
 
-    const response = await fetch("https://medicamentos-na-falta-api.onrender.com/failure");
+    const response = await fetch("http://localhost:8080/failure");
     const data = await response.json();
 
-    data.forEach(medicine => {
-        //console.log(medicine)
-        const row = tabela.insertRow();
+    Object.entries(data).forEach(([subTable, rows]) => {
+        rows.forEach(medicine => {
+            const row = tabela.insertRow();
     
         row.insertCell(0).textContent = medicine.collaborator;
         row.insertCell(1).textContent = medicine.medicine;
@@ -167,7 +203,7 @@ async function atualizarTabela(dados){
         row.insertCell(3).textContent = medicine.quantity;
         row.insertCell(4).textContent = medicine.lab;
         row.insertCell(5).textContent = medicine.date;
-        
+        })
     })
    
 

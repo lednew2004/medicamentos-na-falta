@@ -3,19 +3,19 @@ import fastifycors from 'fastify-cors';
 import { Database } from './database.js';
 import dotenv from 'dotenv';
 
-// Carregar as variáveis de ambiente do arquivo .env
+
 dotenv.config();
 
 const database = new Database();
 const app = fastify();
 
-// Configuração do CORS
+
 app.register(fastifycors, {
   origin: '*',
 });
 
-// Definir a porta usando a variável de ambiente, com fallback para 3000
-const port = process.env.PORT || 3000;  // Se a variável de ambiente PORT não existir, a porta 3000 será usada
+
+const port = process.env.PORT || 3000;  
 
 app.post("/failure", (request, response) => {
   const { collaborator, medicine, queryMedicine, miligrama, quantity, lab } = request.body;
@@ -29,7 +29,15 @@ app.post("/failure", (request, response) => {
     second: "2-digit"
   }).format(date);
 
-  database.insert("failures", { 
+  const tableDay = new Intl.DateTimeFormat("pt-br", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  }).format(date)
+
+  const subTableName = tableDay;
+
+  database.insert("failures", subTableName, { 
     collaborator,
     medicine,
     queryMedicine,
@@ -45,7 +53,7 @@ app.post("/failure", (request, response) => {
 
 app.get("/failure", (request, response) => {
   const { search, collaborator } = request.query;
-
+  
   if(search){
     const data = database.select("failures", search ? { queryMedicine: search } : null);
     return response.status(200).send(data);
@@ -69,10 +77,26 @@ app.put("/failure", (request, response) => {
   return response.status(200).send();
 });
 
-// Iniciar o servidor no endereço 0.0.0.0 e na porta definida
+app.delete("/failure", (request, response) => {
+  const { search } = request.query;
+
+  if (!search) {
+    return response.status(400).send({ error: 'O nome do medicamento é necessário.' });
+  }
+
+  const deleted = database.delete("failures", search);
+
+  if(deleted){
+    return response.status(200).send({ message: `Medicamento ${search} removido com sucesso.` });
+  }else{
+    return response.status(404).send({ error: `Medicamento ${search} não encontrado.` });
+  }
+});
+
+
 app.listen({
   port: 8080,
-  host: '0.0.0.0'  // Certifique-se de que o servidor escuta em 0.0.0.0
+  host: '0.0.0.0'  
 }).then(() => {
   console.log(`Servidor rodando na porta ${port}`);
 }).catch(err => {

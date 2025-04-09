@@ -17,27 +17,32 @@ export class Database {
     }
 
     select(table, search){
-        let data = this.#database[table] ?? [];
+        let data = this.#database[table] ?? {};
 
         if(search){
-            data = data.filter(row => {
-                return Object.entries(search).some(([ key, value ]) => {
-                    
-                    if(!value) return true
-                    return row[key].toLowerCase().includes(value.toLowerCase())
-                })
-            })
+            data = Object.entries(data).reduce((acc, [subTable, rows]) => {
+                acc[subTable] = rows.filter(row => {
+                    return Object.entries(search).some(([Key, value]) => {
+                        if(!value) return true;
+                        return row[Key]?.toLowerCase().includes(value.toLowerCase());
+                    });
+                });
+                return acc
+            }, {});
         }
         return data
     }
 
-    insert(table, data){
-        if(Array.isArray(this.#database[table])){
-            this.#database[table].push(data);
-        }else{
-            this.#database[table] = [data];
-        };
+    insert(table,subTable, data){
+        if(!this.#database[table]){
+            this.#database[table] = {};
+        }
 
+        if(!this.#database[table][subTable]){
+            this.#database[table][subTable] = [];
+        }
+
+        this.#database[table][subTable].push(data);
         this.#persist()
         return data;
     };
@@ -54,4 +59,33 @@ export class Database {
                 this.#persist()
             }
     }
+
+
+    delete(table, name) {
+        let deleted = false;
+
+       
+        Object.entries(this.#database[table] || {}).forEach(([subTable, rows]) => {   
+            const newRows = rows.filter(row => !row.queryMedicine.toLowerCase().includes(name.toLowerCase()));
+
+          
+            if (newRows.length < rows.length) {
+                this.#database[table][subTable] = newRows; 
+                deleted = true;
+            }
+
+            if(newRows.length === 0) {
+                delete this.#database[table][subTable]
+            }
+        });
+
+        
+        if (deleted) {
+            this.#persist();
+            return true; 
+        }
+
+        return false;  
+    }
+
 };
