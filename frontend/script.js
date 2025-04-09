@@ -190,7 +190,7 @@ async function atualizarTabela(dados){
     }
 
 
-    const response = await fetch("http://localhost:8080/failure");
+    const response = await fetch("https://medicamentos-na-falta-api.onrender.com/failure");
     const data = await response.json();
 
     Object.entries(data).forEach(([subTable, rows]) => {
