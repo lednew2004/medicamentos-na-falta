@@ -62,7 +62,7 @@ async function adicionarMedicamento() {
         return;
     }
 
-    await fetch("http://localhost:8080/failure", {
+    await https:"medicamentos-na-falta.onrender.com/failure", {
         method: "POST", 
         headers: {
             "Content-Type": "application/json",
