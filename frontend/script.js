@@ -1,10 +1,14 @@
 const usuarios = {
     "1": "Charles",
     "5": "Leonardo",
+    "6": "Roniel",
+    "7": "Emanuelle",
     "13": "erik",
     "14": "Yago",
     "17": "Ricardo",
     "13": "Erik",
+    "18": "Claudenilson",
+    "19": "Arynael",
     "20": "Richardson",
     "25": "Wendel"
 };
