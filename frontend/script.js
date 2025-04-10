@@ -67,7 +67,7 @@ async function adicionarMedicamento() {
         return;
     }
     
-    await fetch("https://medicamentos-na-falta.onrender.com/failure", {
+    await fetch("https://medicamentos-na-falta-api.onrender.com/failure", {
         method: "POST", 
         headers: {
             "Content-Type": "application/json",
@@ -108,7 +108,7 @@ async function  buscarMedicamento(){
         })
         
         try{
-            const response = await fetch(`https://medicamentos-na-falta.onrender.com/failure?search=${queryMedicine}`);
+            const response = await fetch(`https://medicamentos-na-falta-api.onrender.com/failure?search=${queryMedicine}`);
             const data = await response.json()
     
             Object.entries(data).forEach(([subTable, rows]) => {
@@ -129,7 +129,7 @@ async function  buscarMedicamento(){
         
         try{
             
-            const response = await fetch(`https://medicamentos-na-falta.onrender.com/failure?collaborator=${colaborador}`);
+            const response = await fetch(`https://medicamentos-na-falta-api.onrender.com/failure?collaborator=${colaborador}`);
             const data = await response.json()
            Object.entries(data).forEach(([subTable, rows]) => {
                rows.forEach(dados => {
@@ -167,7 +167,7 @@ async function removerMedicamento() {
     })
     
     try{
-        const response = await fetch(`https://medicamentos-na-falta.onrender.com/failure?search=${queryMedicine}`);
+        const response = await fetch(`https://medicamentos-na-falta-api.onrender.com/failure?search=${queryMedicine}`);
         const data = await response.json()
         
         if(data){
@@ -191,7 +191,7 @@ async function removerMedicamento() {
 async function remove(medicine){
     try{
         if(medicine){
-            await fetch(`https://medicamentos-na-falta.onrender.com/failure?search=${medicine}`, {
+            await fetch(`https://medicamentos-na-falta-api.onrender.com/failure?search=${medicine}`, {
                 method: "DELETE"
             })
             
@@ -222,7 +222,7 @@ async function atualizarTabela(dados){
     }
 
     
-    const response = await fetch("https://medicamentos-na-falta.onrender.com/failure");
+    const response = await fetch("https://medicamentos-na-falta-api.onrender.com/failure");
     const data = await response.json();
     
     try{
@@ -253,7 +253,7 @@ async function atualizarTabela(dados){
 
 async function createOption(){
     
-    const response = await fetch("https://medicamentos-na-falta.onrender.com/failure")
+    const response = await fetch("https://medicamentos-na-falta-api.onrender.com/failure")
     const data = await response.json()
     
     
@@ -278,7 +278,7 @@ async function PrintTable(){
     const tabela = document.getElementById("medicamentosTabela").getElementsByTagName('tbody')[0];
 
         const day = dateSelect.value
-        const response = await fetch("https://medicamentos-na-falta.onrender.com/failure")
+        const response = await fetch("https://medicamentos-na-falta-api.onrender.com/failure")
         const data = await response.json()
 
         Object.entries(data).forEach(([table, rows]) => {
