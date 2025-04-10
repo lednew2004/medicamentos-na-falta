@@ -222,7 +222,7 @@ async function atualizarTabela(dados){
     const data = await response.json();
     
     try{
-        if(!dados){
+        if(!data){
             return console.log(new Error("Sem dados"))
         }
         
