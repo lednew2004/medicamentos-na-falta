@@ -1,1 +1,38 @@
-{"failures":{"08 de abril de 2025":[{"collaborator":"Wendel","medicine":"FLANCOX","queryMedicine":"FLANCOX","miligrama":"400","quantity":"20","lab":"APSEN","date":"08 de abril de 2025 às 23:25:26","failure":true}],"09 de abril de 2025":[{"collaborator":"Wendel","medicine":"LOSARTRANA","queryMedicine":"LOSARTRANA","miligrama":"25","quantity":"20","lab":"NEO QUIMICA","date":"09 de abril de 2025 às 06:26:13","failure":true},{"collaborator":"Wendel","medicine":"MALEATO DE DEXCLORFENIRAMINA + BETAMETASONA","queryMedicine":"MALEATODEDEXCLORFENIRAMINABETAMETASONA","miligrama":"4","quantity":"120","lab":"GERMED","date":"09 de abril de 2025 às 06:36:49","failure":true}]}}
+{
+  "failures": {
+    "08 de abril de 2025": [
+      {
+        "collaborator": "Wendel",
+        "medicine": "FLANCOX",
+        "queryMedicine": "FLANCOX",
+        "miligrama": "400",
+        "quantity": "20",
+        "lab": "APSEN",
+        "date": "08 de abril de 2025 às 23:25:26",
+        "failure": true
+      }
+    ],
+    "09 de abril de 2025": [
+      {
+        "collaborator": "Wendel",
+        "medicine": "LOSARTRANA",
+        "queryMedicine": "LOSARTRANA",
+        "miligrama": "25",
+        "quantity": "20",
+        "lab": "NEO QUIMICA",
+        "date": "09 de abril de 2025 às 06:26:13",
+        "failure": true
+      },
+      {
+        "collaborator": "Wendel",
+        "medicine": "MALEATO DE DEXCLORFENIRAMINA + BETAMETASONA",
+        "queryMedicine": "MALEATODEDEXCLORFENIRAMINABETAMETASONA",
+        "miligrama": "4",
+        "quantity": "120",
+        "lab": "GERMED",
+        "date": "09 de abril de 2025 às 06:36:49",
+        "failure": true
+      }
+    ]
+  }
+}
