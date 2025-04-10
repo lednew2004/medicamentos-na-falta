@@ -3,7 +3,7 @@ const usuarios = {
     "5": "Leonardo",
     "6": "Roniel",
     "7": "Emanuelle",
-    "13": "erik",
+    "13": "Erik",
     "14": "Yago",
     "17": "Ricardo",
     "18": "Claudenilson",
