@@ -178,7 +178,7 @@ document.getElementById("textTranscript").addEventListener("click", async (event
     event.preventDefault();
     const codigoInput = document.getElementById("codigo").value;
     const collaborator = usuarios[codigoInput];
-
+    console.log(collaborator)
     const textSpeech = new webkitSpeechRecognition();
     textSpeech.lang = "pt-BR";
     textSpeech.onresult = async (event) => {
