@@ -15,8 +15,8 @@
     "09 de abril de 2025": [
       {
         "collaborator": "Wendel",
-        "medicine": "LOSARTRANA",
-        "queryMedicine": "LOSARTRANA",
+        "medicine": "LOSARTANA",
+        "queryMedicine": "LOSARTANA",
         "miligrama": "25",
         "quantity": "20",
         "lab": "NEO QUIMICA",
@@ -31,6 +31,18 @@
         "quantity": "120",
         "lab": "GERMED",
         "date": "09 de abril de 2025 às 06:36:49",
+        "failure": true
+      }
+    ],
+    "11 de abril de 2025": [
+      {
+        "collaborator": "Wendel",
+        "medicine": "SINVASTATINA",
+        "queryMedicine": "SINVASTATINA",
+        "miligrama": "40 mg",
+        "quantity": "30",
+        "lab": "SANDOZ",
+        "date": "11 de abril de 2025 às 05:08:01",
         "failure": true
       }
     ]

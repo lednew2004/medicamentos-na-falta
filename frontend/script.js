@@ -294,13 +294,49 @@ async function PrintTable(){
                        row.insertCell(3).textContent = dados.quantity;
                        row.insertCell(4).textContent = dados.lab;
                        row.insertCell(5).textContent = dados.date;
-                
-                   })
+                       
+                    })
                 }
-        })
-}
+            })
+        }
+        
+        
+        
+        
+        dateSelect.addEventListener("click", PrintTable)
+        document.getElementById("textTranscript").addEventListener("click", async (event)=>{
+            event.preventDefault()
+            
+            const codigoInput = document.getElementById("codigo");
+            const collaborator = usuarios[codigoInput]
+            let failure = "" ;
 
-dateSelect.addEventListener("click", PrintTable)
+    const textSpeech = new webkitSpeechRecognition()
+    textSpeech.lang = "pt-BR"
+    textSpeech.onresult = async (event) => {
+        const transcript = event.results[0][0].transcript
+        failure = transcript
+        
+        try {
+            const response = await fetch('http://localhost:3000/api/process', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ failure, collaborator }),
+            });
+            
+            const data = await response.json();
+            console.log("oi")
+    console.log(data); // Aqui você pode manipular a resposta
+    } catch (error) {
+    console.error('Erro:', error);
+    }
+    }
+
+    
+    textSpeech.start()
+})
 
 createOption()
 PrintTable()
