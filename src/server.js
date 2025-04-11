@@ -22,11 +22,8 @@ app.post("/failure", (request, response) => {
   const date = new Date();
   const formatPt = new Intl.DateTimeFormat("pt-br", {
     day: "2-digit",
-    month: "long",
+    month: "2-digit",
     year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit"
   }).format(date);
 
   const tableDay = new Intl.DateTimeFormat("pt-br", {
