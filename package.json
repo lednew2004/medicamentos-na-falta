@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch src/server.js",
-    "test": "node --watch frontend/app.js",
+    "test": "node --watch app.js",
     "start": "http-server ./frontend"
   },
   "keywords": [],

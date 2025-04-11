@@ -12,7 +12,10 @@ app.register(fastifyCors, {
 
 
 const chaveApi = process.env.key
-const openai = new OpenAI({ apiKey: chaveApi });
+const openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY
+  });
+  
 
 const formatMedicineForQuery = (medicine) => {
     return medicine.replace(/\s+/g, '').toUpperCase();
