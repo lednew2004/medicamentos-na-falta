@@ -184,7 +184,7 @@ document.getElementById("textTranscript").addEventListener("click", async (event
     textSpeech.onresult = async (event) => {
         const transcript = event.results[0][0].transcript;
         try {
-            const response = await fetch('http://localhost:3000/api/process', {
+            const response = await fetch('https://medicamentos-na-falta-ia.onrender.com/api/process', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ failure: transcript, collaborator }),
